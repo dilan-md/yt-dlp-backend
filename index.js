@@ -24,9 +24,9 @@ app.get('/api/info', async (req, res) => {
         const output = await youtubedl(url, {
             dumpSingleJson: true,
             noWarnings: true,
-            noCallHome: true,
             noCheckCertificates: true,
             preferFreeFormats: true,
+            extractorArgs: 'youtube:player_client=android,ios',
         });
 
         const formats = output.formats || [];
@@ -70,9 +70,9 @@ app.get('/api/download', async (req, res) => {
     // Construir flags
     const flags = {
         noWarnings: true,
-        noCallHome: true,
         noCheckCertificates: true,
         output: outputTemplate,
+        extractorArgs: 'youtube:player_client=android,ios', // Intento de bypass de bot
     };
 
     if (isMp3) {
