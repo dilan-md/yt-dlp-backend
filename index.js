@@ -3,7 +3,7 @@ const cors = require('cors');
 const youtubedl = require('youtube-dl-exec');
 const fs = require('fs');
 const path = require('path');
-const { v4: uuidv4 } = require('uuid');
+const { randomUUID } = require('crypto');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -61,7 +61,7 @@ app.get('/api/download', async (req, res) => {
     const tempDir = path.join(__dirname, 'temp');
     if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir, { recursive: true });
 
-    const id = uuidv4();
+    const id = randomUUID();
     const ext = isMp3 ? 'mp3' : 'mp4';
     // yt-dlp a veces cambia la extensión, así que usamos un patrón para encontrar el archivo
     const outputTemplate = path.join(tempDir, `${id}.%(ext)s`);
