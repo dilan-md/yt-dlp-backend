@@ -1,2 +1,5 @@
 [phases.setup]
-nixPkgs = ["...", "ffmpeg", "python3"]
+nixPkgs = ["...", "ffmpeg", "python3", "yt-dlp"]
+
+[variables]
+YOUTUBE_DL_PATH = "yt-dlp"
